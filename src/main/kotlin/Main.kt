@@ -2,22 +2,19 @@ package org.example
 
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
+import org.jsoup.nodes.Element
+import org.jsoup.select.Elements
 
 fun main() {
 
-//    val doc: Document = Jsoup.connect("https://en.wikipedia.org/").get()
-    val doc: Document = Jsoup.connect("https://mybook.ru/author/duglas-adams/avtostopom-po-galaktike-restoran-u-konca-vselennoj/citations/").get()
-    println(doc.title())
+    val doc: Document = Jsoup.connect("https://mybook.ru/author/duglas-adams/" +
+            "avtostopom-po-galaktike-restoran-u-konca-vselennoj/citations/").get()
 
-//    println(doc.select("#mp-itn b a"))
-    println(doc.select(".cOOA-do .bzpNIu").text())
+    val quotes: Elements = doc.select(".bzpNIu")
+
+    println("Цитаты из произведения \"Автостопом по галактике\" Дугласа Адамса:\n")
+
+    for (quote: Element in quotes)
+        println("${quote.text()}\n")
 
 }
-
-//Document doc = Jsoup.connect("https://en.wikipedia.org/").get();
-//log(doc.title());
-//Elements newsHeadlines = doc.select("#mp-itn b a");
-//for (Element headline : newsHeadlines) {
-//    log("%s\n\t%s",
-//        headline.attr("title"), headline.absUrl("href"));
-//}
