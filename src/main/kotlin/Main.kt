@@ -10,11 +10,12 @@ fun main() {
     val doc: Document = Jsoup.connect("https://mybook.ru/author/duglas-adams/" +
             "avtostopom-po-galaktike-restoran-u-konca-vselennoj/citations/").get()
 
-    val quotes: Elements = doc.select(".bzpNIu")
+    val quotes: Elements = doc.select("article")
 
     println("Цитаты из произведения \"Автостопом по галактике\" Дугласа Адамса:\n")
 
-    for (quote: Element in quotes)
+    for (quote: Element in quotes){
         println("${quote.text()}\n")
+    }
 
 }
